@@ -26,11 +26,16 @@ INCDIR   = inc
 BINDIR   = bin
 
 # -------------------
+# Source Directory
+# -------------------
+SRCS=$(SRCDIR)/
+
+# -------------------
 # Define flags
 # -------------------
 SOURCES  := $(wildcard $(SRCDIR)/*.c)
 INCLUDES := $(wildcard $(INCDIR)/*.h)
-OBJECTS  := $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+OBJS  := $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 rm       = rm -f
 
 # -------------------
@@ -38,7 +43,9 @@ rm       = rm -f
 # -------------------
 TARGET = $(BINDIR)/
 
-$(TARGET): $(OBJECTS)
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
 	@$(LINKER) $(OBJECTS) $(LFLAGS) -o $@
 	@echo "Linking complete!"
 
