@@ -4,8 +4,8 @@
 
 
 
-### Usage:
-- [ ] Test 
+### Checklist:
+- [ ] Get Makefile to run
 
 
 ### Ex:
