@@ -49,7 +49,7 @@ $(OBJS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 # -------------------
 # Clean: remove all obj file
 # -------------------
-.PHONY: clean
+.PHONY: all test clean
 clean:
 	@$(rm) $(OBJECTS)
 	@echo "Cleanup complete!"
