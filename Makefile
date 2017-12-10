@@ -28,7 +28,7 @@ BINDIR   = bin
 # -------------------
 # Source Directory
 # -------------------
-SRCS=$(SRCDIR)/
+SRCS=$(SRCDIR)/main.c
 
 # -------------------
 # Define flags
@@ -41,25 +41,25 @@ rm       = rm -f
 # -------------------
 # Name of executable
 # -------------------
-TARGET = $(BINDIR)/
+TARGET = $(BINDIR)/main
 
 all: $(TARGET)
-
-$(TARGET): $(OBJS)
-	@$(LINKER) $(OBJECTS) $(LFLAGS) -o $@
-	@echo "Linking complete!"
 
 $(OBJS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "Compiled "$<" successfully!"
 
+$(TARGET): $(OBJS) 
+	${CC} ${CFLAGS} -o $@ $(OBJS)
+	@echo "Linking complete!"
+
 # -------------------
 # Clean: remove all obj file
 # -------------------
-.PHONY: all test clean
+.PHONY: remove
 clean:
-	@$(rm) $(OBJECTS)
-	@echo "Cleanup complete!"
+	@$(rm) $(OBJS)
+	@echo "Obj removed!"
 
 # -------------------
 # Clean: remove exe
@@ -71,7 +71,7 @@ remove: clean
 # -------------------
 # Cleanall: Remove obj and exe
 cleanall:
-	@$(rm) $(OBJECTS)
+	@$(rm) $(OBJS)
 	@$(rm) $(BINDIR)/$(TARGET) 
 	@echo "Obj and Executable removed!".PHONY: remove
 # -------------------------------------------
